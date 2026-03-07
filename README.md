@@ -1,4 +1,15 @@
-# DB_Hercules
+# Hercules
+
+### Introduction
+Deutsche Bank has many financial assets and liabilities like stocks, bonds and loans. Regulators want to know the bank values these items, especially those that are not easily priced in the market (called "Level 3" valuation).
+
+The **Hercules** system is designed and developed to gather all the necessary financial information, proceess it and create 3 specific IFRS 13 reports (Forms C337, C376, C377)
+
+### Purpose and Scope
+- **IFRS 13:** Mandates the disclosure of financial instrument classification at fair value into a three level hierarchy (Level 1, Level 2 and Level 3).
+- **Form C337:** Discloses the Fair Value of Deutsche Bank's Financial Instruments valued using a Level 3 valuation (significant unobservable inputs).
+- **Form C376:** Requires a Roll Forward Table for Level 3 Financial Assets and Liabilities, explaining movements ue to fair value changes, cash movements, and transfers between levels.
+- **Form C377:** Discloses unrealized P&L on Level 3 financial instruments held at the reporting date.
 
 ```mermaid
 %%{
@@ -29,11 +40,11 @@ graph TD
     subgraph Data["Data Ingestion"]
         RollForward --> Upload{"Upload Data"}
         Upload --> FX("Fx Rates")
-        Upload --> Cash("ACS Cash")
-        Upload --> Bond("dbTrader Bond ISIN")
-        Upload --> MARUP("MARUP UBR Hierarchies")
-        Upload --> GVG("GVG Levelling")
-        Upload --> Trade("FDW CRES Trade")
+        Upload --> Cash("Cash")
+        Upload --> Bond("Bond ISIN")
+        Upload --> MARUP("UBR Hierarchies")
+        Upload --> GVG("Levelling")
+        Upload --> Trade("Trade")
         Upload --> Balance("Opening Balance")
         FX --> Uploaded{"Upload Successful"}
         Cash --> Uploaded
