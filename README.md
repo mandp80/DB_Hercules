@@ -40,11 +40,11 @@ graph TD
     subgraph Data["Data Ingestion"]
         RollForward --> Upload{"Upload Data"}
         Upload --> FX("Fx Rates")
-        Upload --> Cash("Cash")
-        Upload --> Bond("Bond ISIN")
-        Upload --> MARUP("UBR Hierarchies")
-        Upload --> GVG("Levelling")
-        Upload --> Trade("Trade")
+        Upload --> Cash("ACS Cash")
+        Upload --> Bond("dbTrader Bond ISIN")
+        Upload --> MARUP("MARUP UBR Hierarchies")
+        Upload --> GVG("GVG Levelling")
+        Upload --> Trade("FDW CRES Trade")
         Upload --> Balance("Opening Balance")
         FX --> Uploaded{"Upload Successful"}
         Cash --> Uploaded
@@ -65,9 +65,12 @@ graph TD
     
 
     %% High-contrast styling
-    classDef pink fill:#FFD3DA,stroke:#333,stroke-dasharray: 2 2
-    classDef skyblue fill:#D6F7FF,stroke:#333,stroke-dasharray: 2 2
-    classDef yellow fill:#fff9c4,stroke:#333,stroke-dasharray: 2 2
+    classDef pink fill:#FFD3DA,stroke:#333,stroke-dasharray: 2 2,stroke-width:3px
+    classDef skyblue fill:#D6F7FF,stroke:#333,stroke-dasharray: 2 2,stroke-width:3px
+    classDef yellow fill:#fff9c4,stroke:#333,stroke-dasharray: 2 2,stroke-width:3px
+    classDef node stroke:#333,stroke-width:2px
+   
+    linkStyle default stroke:#333,stroke-width:2px;
 
     class PreQE pink;
     class Data skyblue;
