@@ -1,3 +1,3 @@
 ### Hercules - HLD
 
-![Alt text](images/Hercules HLD.drawio.png)
+![Alt text](images/Hercules-HLD.drawio.png)
