@@ -60,11 +60,11 @@ graph TD
     subgraph Data["Data Ingestion"]
         RollForward --> Upload{"Upload Data"}
         Upload --> FX("Fx Rates")
-        Upload --> Cash("ACS Cash")
-        Upload --> Bond("dbTrader Bond ISIN")
-        Upload --> MARUP("MARUP UBR Hierarchies")
-        Upload --> GVG("GVG Levelling")
-        Upload --> Trade("FDW CRES Trade")
+        Upload --> Cash("Cash")
+        Upload --> Bond("Bond ISIN")
+        Upload --> MARUP("UBR Hierarchies")
+        Upload --> GVG("Levelling")
+        Upload --> Trade("Trade")
         Upload --> Balance("Opening Balance")
         FX --> Uploaded{"Upload Successful"}
         Cash --> Uploaded
