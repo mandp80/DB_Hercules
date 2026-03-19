@@ -33,3 +33,8 @@ The primary objective of this migration is to address the following key issues o
 - Better User Experience: -New application interfaces offer more intuitive and responsive designs for users, improving overall usability.
 - Operational Efficiency: - Streamlined workflows, automated processes and improved visibility contribute to faster, more reliable operations.
 - Tasks Controls: - Implemented to manage, coordinate and validate the execution of individual tasks within a system workflow. This control ensure that tasks are executed in the correct sequence.
+
+## 1.7. Phase-wise Evolution
+- Phase-1: Hybrid model with manual uploads and partial automation
+- Phase-2: Fully automated ingestion and centralized persistence
+- Target State: End-to-end automated, governed, and scalable processing platform
