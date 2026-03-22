@@ -5,9 +5,9 @@
 - [Introduction](#introduction)
 - [Flow Diagram](#flow-diagram)
 - [Project Purpose](#%EF%B8%8F-project-purpose)
-- [The Legacy Challenge (The Monolith)](#the-legacy-challenge-the-monolith)
-- [The Modern Solution (Hercules Architecture)](#the-modern-solution-hercules-architecture)
-- [Technology Stack](#technology-stack)
+- [The Legacy Challenge (The Monolith)](#-the-legacy-challenge-the-monolith)
+- [The Modern Solution (Hercules Architecture)](#-the-modern-solution-hercules-architecture)
+- [Technology Stack](#-technology-stack)
 
 ---
 
