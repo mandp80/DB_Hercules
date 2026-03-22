@@ -25,7 +25,7 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 - **Scalable Microservices:** Replaces the single-threaded monolith with a modular design, allowing independent scaling of high-load data ingestion tasks.
 - **Automated Data Lifecycle:** Implements an Automated Scheduler for ingestion, removing "IT Intervention" and empowering business users to run on-demand reports via a modern React UI.
 - **Observability & Monitoring:** A real-time Monitoring Dashboard provides instant visibility into pipeline health, reducing the "Mean Time to Recovery" (MTTR) for failed tasks.
-- **Enterprise Security & Audit:** Integrated Audit Trails capture every system and user action, ensuring 100% traceability from source to target—critical for Finnish banking regulations (GDPR/PSD2).
+- **Enterprise Security & Audit:** Integrated Audit Trails capture every system and user action, ensuring 100% traceability from source to target—critical for banking regulations.
 - **CI/CD Ready:** Optimized for rapid deployment cycles using Kubernetes-native patterns, reducing deployment time from days to minutes.
 
 ### Flow Diagram
