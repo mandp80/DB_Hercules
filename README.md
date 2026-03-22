@@ -139,7 +139,7 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 - **Build/Scripting:** Groovy (Gradle)
 
 ---
-## Project Structure
+### Project Structure
 
 ```
 ├── src/
