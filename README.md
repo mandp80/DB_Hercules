@@ -7,6 +7,7 @@
 - [Project Purpose](#%EF%B8%8F-project-purpose)
 - [The Legacy Challenge (The Monolith)](#-the-legacy-challenge-the-monolith)
 - [The Modern Solution (Hercules Architecture)](#-the-modern-solution-hercules-architecture)
+- [Architecture](#%EF%B8%8F-architecture)
 - [Technology Stack](#-technology-stack)
 
 ---
@@ -118,6 +119,12 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 - **Enterprise Security & Audit:** Integrated Audit Trails capture every system and user action, ensuring 100% traceability from source to target—critical for banking regulations.
 - **CI/CD Ready:** Optimized for rapid deployment cycles using Kubernetes-native patterns, reducing deployment time from days to minutes.
 
+---
+
+### 🏛️ Architecture
+-  [High Level Design](architecture/HLD.md)
+-  [Low Level Design](architecture/LLD.md)
+-  [Entity-Relationship Diagram](data-models/ERD.md)
 ---
 
 ### 🚀 Technology Stack
