@@ -37,7 +37,8 @@ Below is the flow diagram depicting typical actvities performed by Users to subm
       'primaryBorderColor': '#000000',
       'lineColor': '#000000',
       'fontFamily': 'arial',
-      'fontSize': '14px'
+      'fontSize': '14px',
+      'fontWeight': 'bold'
     },
     'style': {
       'global': [
