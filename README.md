@@ -10,22 +10,23 @@ The **Hercules** system is designed and developed to gather all the necessary fi
 - **Form C376:** Requires a Roll Forward Table for Level 3 Financial Assets and Liabilities, explaining movements ue to fair value changes, cash movements, and transfers between levels.
 - **Form C377:** Discloses unrealized P&L on Level 3 financial instruments held at the reporting date.
 
-### Purpose and Scope
-The current legacy system is standalone reporting application, which relies on manual processes, IT itervention, email-based data sharing and Excel driven workflow, resulting into security, scalability and operational efficency challenges. To address these gaps, a modern web=based Java/Spring application deployed on Openshift cluster, has been introduced to automate and streamline the entire reporting lifecycle.
+### 🏗️ Project Purpose: From Legacy Monolith to Cloud-Native
+**Hercules** is a reference architecture designed to modernize a legacy financial reporting monolith. The project demonstrates how to transition from high-risk, manual workflows to a scalable, automated, and secure microservices ecosystem.
 
-### Challenges and Limitation of existing System
-- **Unsecure:** No standard protocol is implemented for user login and password is stored in local database in unsecured manner.
-- **Operational and Data Risk:** Manual data handling, email based data sharing and direct database updates by IT team.
-- **Lack of Audit Control:** No clear end-to-end audit trail, making it difficult to ensure compliance and trace the data lineage.
-- **Slow Execution:** Single threaded application resulting into bottleneck when multiple users tries to upload the data and generate the reports.
-- **Technology Obsolescence:** As a legacy platform, it is difficult to enhance, scale or migrate, posing long term technology risk.
+### 🔴 The Legacy Challenge (The Monolith)
+The existing system is a single-tier, standalone reporting application that has reached its "Technology Obsolescence" phase. It creates significant bottlenecks in the bank’s digitization roadmap:
+- **Operational Risk:** Reliance on manual Excel-driven workflows and email-based data sharing leads to high margin of error and data fragmentation.
+- **Security Debt:** Lacks standard OAuth2/OIDC protocols; sensitive credentials and user data are stored in insecure, local databases.
+- **Scalability Bottlenecks:** A single-threaded execution model prevents concurrent data ingestion, causing significant "Slow Execution" during month-end reporting spikes.
+- **Audit & Compliance Gaps:** No centralized data lineage or end-to-end audit trail, making regulatory compliance difficult to verify.
 
-### Solution
-Hercules is introduced to empower users with powerful new features:
-- **Automated Scheduler:** Many Data ingestion/loading task is scheduled as well can be run on-demand basis from the UI, removing the dependency from IT team.
-- **Monitoring Dashboard:** A real-time dashboard provides complete visibility into the status of all the activities, allowing user to track the progress independently.
-- **Automated Notification:** Users will receive automatic email notification upon completion or failure of the task with status.
-- **Audit Trail:** All activities perfomed through UI or System are captured in audit trail, ensuring full traceability from source to target.
+### 🟢 The Modern Solution (Hercules Architecture)
+To eliminate technical debt and accelerate deployment cycles, **Hercules** introduces a containerized Java/Spring Boot architecture deployed on OpenShift:
+- **Scalable Microservices:** Replaces the single-threaded monolith with a modular design, allowing independent scaling of high-load data ingestion tasks.
+- **Automated Data Lifecycle:** Implements an Automated Scheduler for ingestion, removing "IT Intervention" and empowering business users to run on-demand reports via a modern React UI.
+- **Observability & Monitoring:** A real-time Monitoring Dashboard provides instant visibility into pipeline health, reducing the "Mean Time to Recovery" (MTTR) for failed tasks.
+- **Enterprise Security & Audit:** Integrated Audit Trails capture every system and user action, ensuring 100% traceability from source to target—critical for Finnish banking regulations (GDPR/PSD2).
+- **CI/CD Ready:** Optimized for rapid deployment cycles using Kubernetes-native patterns, reducing deployment time from days to minutes.
 
 ### Flow Diagram
 
