@@ -1,5 +1,16 @@
 # Hercules
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Flow Diagram](#flow-diagram)
+- [Project Purpose](#%EF%B8%8F-project-purpose)
+- [The Legacy Challenge (The Monolith)](#the-legacy-challenge-the-monolith)
+- [The Modern Solution (Hercules Architecture)](#the-modern-solution-hercules-architecture)
+- [Technology Stack](#technology-stack)
+
+---
+
 ### Introduction
 Deutsche Bank has many financial assets and liabilities like stocks, bonds and loans. Regulators want to know the bank values these items, especially those that are not easily priced in the market (called "Level 3" valuation).
 
@@ -84,7 +95,7 @@ graph TD
 ```
 ---
 
-### 🏗️ Project Purpose: From Legacy Monolith to Cloud-Native
+### 🏗️ Project Purpose
 **Hercules** is a reference architecture designed to modernize a legacy financial reporting monolith. The project demonstrates how to transition from high-risk, manual workflows to a scalable, automated, and secure microservices ecosystem.
 
 ---
