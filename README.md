@@ -9,6 +9,7 @@
 - [The Modern Solution (Hercules Architecture)](#-the-modern-solution-hercules-architecture)
 - [Architecture](#%EF%B8%8F-architecture)
 - [Technology Stack](#-technology-stack)
+- [Phase Wise Evolution (Strangler Fig Pattern)](#phase-wise-evolution-strangler-fig-pattern)
 - [Project Structure](#project-structure)
   
 ---
@@ -104,7 +105,7 @@ graph TD
 ---
 
 ### 🔴 The Legacy Challenge (The Monolith)
-The existing system is a single-tier, standalone reporting application that has reached its "Technology Obsolescence" phase. It creates significant bottlenecks in the bank’s digitization roadmap:
+The existing system is a single-tier, thick client, standalone reporting application that has reached its "Technology Obsolescence" phase. It creates significant bottlenecks in the bank’s digitization roadmap:
 - **Operational Risk:** Reliance on manual Excel-driven workflows and email-based data sharing leads to high margin of error and data fragmentation.
 - **Security Debt:** Lacks standard OAuth2/OIDC protocols; sensitive credentials and user data are stored in insecure, local databases.
 - **Scalability Bottlenecks:** A single-threaded execution model prevents concurrent data ingestion, causing significant "Slow Execution" during month-end reporting spikes.
@@ -139,6 +140,20 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 - **Build/Scripting:** Groovy (Gradle)
 
 ---
+
+### Phase-wise Evolution (Strangler Fig Pattern)
+
+**Phase 1:** Build new Spring Boot backend READ APIs for React front end and future integrations.
+**Phase 2:** Build new React UI (reporting / dashboards) and run both systems in parallel.
+**Phase 3:** Feature-by-Feature Strangulation - for each module, build spring boot API, react UI, deploy on Openshift using Helm.
+**Phase 4:** Excel ingestion → Spring Batch. Run both system in paralled and validate outputs and then swich to Openshift Jobs.
+**Phase 5:** Authentication centralization - Move to OAuth 2.0 base authentication and authorization framework.
+**Phase 6:** Disable DB access from thick client.
+**Phase 7:** Full user migration.
+**Phase 8:** Decommission.
+
+---
+
 ### Project Structure
 
 ```
