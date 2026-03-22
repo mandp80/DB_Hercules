@@ -9,7 +9,8 @@
 - [The Modern Solution (Hercules Architecture)](#-the-modern-solution-hercules-architecture)
 - [Architecture](#%EF%B8%8F-architecture)
 - [Technology Stack](#-technology-stack)
-
+- [Project Structure](#project-structure)
+  
 ---
 
 ### Introduction
@@ -138,4 +139,36 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 - **Build/Scripting:** Groovy (Gradle)
 
 ---
+## Project Structure
 
+```
+├── src/
+│   ├── main/java/                        # Application source code
+|   |   └── .../controller                # Handles incoming HTTP requests and outgoing responses, defining the API endpoints.
+|   |   ├── .../service                   # Encapsulates the core business logic and rules of the application.
+|   |   ├── .../repository                # Manages data persistence and retrieval.
+|   |   ├── .../entity                    # Defines the JPA data models or entities used in the application mapping to database tables.
+|   |   ├── .../dto                       # Contains Data Transfer Objects, used to decouple the API representation from the internal data models.
+|   |   ├── .../config                    # Stores configuration-related classes (e.g., security, database settings).
+│   ├── main/resources/                   # Application resources
+│   ├── test/java/                        # Test source code
+│   └── test/resources/                   # Test resources
+├── Dockerfile                            # Defines how to build the application container image
+├── Jenkinsfile                           # Defines the CI/CD pipeline
+├── charts/                               # Directory to hold the Helm chart(s) for the application
+│   └── <module-chart-name>/              # The specific chart directory (e.g., fx-rate)
+│       ├── Chart.yaml                    # Helm Chart metadata (name, version, etc.)
+│       ├── values.yaml                   # Default configuration values for the chart
+│       ├── templates/                    # Kubernetes resource templates (Deployment, Service, etc.)
+│       │   ├── deployment.yaml           # Defines the Kubernetes Deployment
+│       │   ├── service.yaml              # Defines the Kubernetes Service
+│       │   ├── route.yaml                # OpenShift Route
+│       │   └── ...
+│       └── ...
+├── docs/                                 # Documentation
+├── scripts/                              # Utility scripts
+├── pom.xml                               # Maven configuration
+└── README.md                             # Readme file
+
+```
+---
