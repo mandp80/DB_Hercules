@@ -143,14 +143,14 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 
 ### Phase-wise Evolution (Strangler Fig Pattern)
 
-**Phase 1:** Build new Spring Boot backend READ APIs for React front end and future integrations.
-**Phase 2:** Build new React UI (reporting / dashboards) and run both systems in parallel.
-**Phase 3:** Feature-by-Feature Strangulation - for each module, build spring boot API, react UI, deploy on Openshift using Helm.
-**Phase 4:** Excel ingestion → Spring Batch. Run both system in paralled and validate outputs and then swich to Openshift Jobs.
-**Phase 5:** Authentication centralization - Move to OAuth 2.0 base authentication and authorization framework.
-**Phase 6:** Disable DB access from thick client.
-**Phase 7:** Full user migration.
-**Phase 8:** Decommission.
+- **Phase 1:** Build new Spring Boot backend READ APIs for React front end and future integrations.
+- **Phase 2:** Build new React UI (reporting / dashboards) and run both systems in parallel.
+- **Phase 3:** Feature-by-Feature Strangulation - for each module, build spring boot API, react UI, deploy on Openshift using Helm.
+- **Phase 4:** Excel ingestion → Spring Batch. Run both system in paralled and validate outputs and then swich to Openshift Jobs.
+- **Phase 5:** Authentication centralization - Move to OAuth 2.0 base authentication and authorization framework.
+- **Phase 6:** Disable DB access from thick client.
+- **Phase 7:** Full user migration.
+- **Phase 8:** Decommission.
 
 ---
 
