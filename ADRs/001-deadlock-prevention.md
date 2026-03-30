@@ -11,7 +11,7 @@
 
 - **Decision:** We will decouple the report request from the generation process by implementing an Asynchronous Request-Response Pattern combined with a Time-Based Locking Mechanism at the application level.
   - **Non-Blocking API:** The client receives an immediate 202 Accepted response with a unique reportId or status polling URL.
-  - **Java-Based Locking:** Before executing the SP, the application will attempt to acquire a lock (e.g., using a ReentrantLock or a distributed lock like Redis/Hazelcast if in a clustered environment).
+  - **Java-Based Locking:** Before executing the SP, the application will attempt to acquire a lock using a ReentrantLock.
   - **Timeout Logic:** If the lock cannot be acquired within a specific threshold, the system will return a "Report in progress" message rather than allowing a database-level contention/rollback.
   - **Decoupled Logic:** The Stored Procedure execution and the Apache POI Excel writing logic will be executed in a separate background thread (e.g., @Async or a dedicated ExecutorService).
 
