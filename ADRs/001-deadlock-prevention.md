@@ -13,7 +13,7 @@
   - **Non-Blocking API:** The client receives an immediate 202 Accepted response with a unique reportId or status polling URL.
   - **Java-Based Locking:** Before executing the SP, the application will attempt to acquire a lock using a ReentrantLock.
   - **Timeout Logic:** If the lock cannot be acquired within a specific threshold, the system will return a "Report in progress" message rather than allowing a database-level contention/rollback.
-  - **Decoupled Logic:** The Stored Procedure execution and the Apache POI Excel writing logic will be executed in a separate background thread (e.g., @Async or a dedicated ExecutorService).
+  - **Decoupled Logic:** The Stored Procedure execution and the Apache POI Excel writing logic will be executed in a separate background thread.
 
 ![Diagram of Deadlock Solution](images/Hercules-deadlock-solution.drawio.png)
 
@@ -25,5 +25,5 @@
     - **Resilience:** System timeouts (HTTP 504) are eliminated since the initial request is short-lived.
   - **Negative/Neutral:**
     - **Increased Complexity:** Requires implementing a status polling mechanism or a WebSocket/Notification system to alert the user when the file is ready.
-    - **State Management:** The application must now track the state of reports (e.g., PENDING, PROCESSING, COMPLETED, FAILED) in a metadata table or cache.
-    - **Storage Requirements:** Generated files must be temporarily stored (e.g., S3, Azure Blob, or a shared file system) until the user triggers the final download.
+    - **State Management:** The application must now track the state of reports (e.g., PENDING, PROCESSING, COMPLETED, FAILED) in a metadata table.
+    - **Storage Requirements:** Generated files must be temporarily stored on Persistent Volume Claim (PVC) until the user triggers the final download.
