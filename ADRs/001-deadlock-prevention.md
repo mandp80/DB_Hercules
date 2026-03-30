@@ -6,6 +6,7 @@
   - **Concurrency Issue:** MS SQL Server encounters lock contention when multiple users request the same report simultaneously. If locks are not released within the timeout period, transactions are rolled back, resulting in a poor user experience and failed requests.
   - **Resource Exhaustion:** Keeping a synchronous HTTP connection open for 5+ minutes is inefficient and prone to timeouts at the Load Balancer/Gateway level.
  
+![Diagram of Current Process Deadlock](images/Hercules-deadlock.drawio.png)
 
 
 - **Decision:** We will decouple the report request from the generation process by implementing an Asynchronous Request-Response Pattern combined with a Time-Based Locking Mechanism at the application level.
@@ -14,7 +15,7 @@
   - **Timeout Logic:** If the lock cannot be acquired within a specific threshold, the system will return a "Report in progress" message rather than allowing a database-level contention/rollback.
   - **Decoupled Logic:** The Stored Procedure execution and the Apache POI Excel writing logic will be executed in a separate background thread (e.g., @Async or a dedicated ExecutorService).
 
-
+![Diagram of Deadlock Solution](images/Hercules-deadlock-solution.drawio.png)
 
 
 - **Consequences:**
