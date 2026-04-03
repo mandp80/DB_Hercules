@@ -127,6 +127,7 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 -  [High Level Design](architecture/HLD.md)
 -  [Low Level Design](architecture/LLD.md)
 -  [Entity-Relationship Diagram](data-models/ERD.md)
+-  [ADRs](ADRs/001-deadlock-prevention.md)
 ---
 
 ### 🚀 Technology Stack
