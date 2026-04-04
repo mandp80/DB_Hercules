@@ -1,0 +1,24 @@
+### Adoption of OAuth2 Authentication and JWT Tokens
+- **Status:** Accepted
+- **Context & Problem Statement:** Our application requires a secure, scalable authentication and authorization mechanism for distributed components (microfrontends, mobile, APIs). We need to support user identity verification and granular permission control (scopes) without incurring the performance penalty of frequent database lookups for session validation. 
+- **Decision:** We will use OAuth 2.0 with JWT access tokens for both authentication and authorization. 
+  - **Authentication:** The authorization server will issue a signed JWT upon successful user login.
+  - **Authorization:** Services will validate the JWT signature and enforce policies based on scopes and claims (e.g., user_id, role) embedded in the token.
+  - **JWT Handling:** Clients will send JWTs in the Authorization: Bearer <token> header.
+  - **Key Management:** Asymmetric signing (RS256 or similar) will be used to allow services to verify tokens without querying the identity provider directly. 
+- **Mandatory JWT Claims:** The following claims are required for all tokens to ensure security:
+  - **iss (Issuer):** Verified to ensure the token came from our trusted IDP.
+  - **sub (Subject):** Unique user identifier.
+  - **aud (Audience):** Used to prevent token misuse across services.
+  - **exp (Expiration Time):** Short-lived tokens to reduce breach risks.
+  - **jti (JWT ID):** To prevent replay attacks. 
+- **Alternatives Considered:**
+  - **Opaque Tokens:** Rejected due to high latency (needs constant db checks) and low scalability.
+  - **Session Cookies (Traditional):** Rejected for APIs; not suited for pure microservice architectures. 
+- **Security Considerations:**
+  - **Secure Storage:** JWTs will be stored in secure (HttpOnly, Secure, SameSite=Strict) cookies on frontend clients to mitigate Cross-Site Scripting (XSS) and Cross-Site Request Forgery (CSRF).
+  - **Short Lifespan:** Access tokens will have short expiration times, with refresh tokens used to obtain new ones.
+  - **Validation:** All services must validate the signature, expiration, and issuer of the token. 
+- **Consequences:**
+  - **Positive:** Stateless authentication enables high performance. Standardized protocols ease third-party integration.
+  - **Negative/Risk:** Once issued, JWTs cannot be revoked before expiration unless a blacklist is implemented, which adds complexity. 
