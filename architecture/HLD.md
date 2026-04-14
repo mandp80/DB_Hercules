@@ -10,7 +10,7 @@ The entire application is hosted on an on-premises OpenShift Cluster, which prov
 
 - **Scalability:** The cluster manages the lifecycle of the Spring Boot containers, allowing for horizontal scaling based on the reporting load.
 
-- **Management:** The plan is to manage Infrastructure via Terraform, while application deployments are already handled through Helm charts.
+- **Management:** The plan is to manage Static Infrastructure like namespaces, resource quotas, service accounts and persistent volumes via Terraform, while application deployments are already handled through Helm charts.
 
 
 ### Data Ingestion & Processing Layer:
