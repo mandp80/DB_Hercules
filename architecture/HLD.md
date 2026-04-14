@@ -1,10 +1,10 @@
-### Hercules - High Level Design (HLD)
+## Hercules - High Level Design (HLD)
 
 ![Alt text](images/Hercules-HLD.drawio.png)
 
 This design illustrates a modern, containerized approach to banking data reporting, transitioning from a monolithic system to a scalable microservices architecture.
 
-**Core Infrastructure: OpenShift Cluster:**
+### Core Infrastructure: OpenShift Cluster:
 
 The entire application is hosted on an on-premises OpenShift Cluster, which provides the orchestration layer for the microservices as well as Data Ingestion Batch Jobs.
 
@@ -13,7 +13,7 @@ The entire application is hosted on an on-premises OpenShift Cluster, which prov
 - **Management:** The plan is to manage Infrastructure via Terraform, while application deployments are already handled through Helm charts.
 
 
-**Data Ingestion & Processing Layer**:
+### Data Ingestion & Processing Layer:
 
 This layer is responsible for the intake of raw financial data into the system. A specialized processes created that handle the scheduled or event-driven intake of data files.
 
@@ -25,7 +25,7 @@ This layer is responsible for the intake of raw financial data into the system. 
 
   - In-memory cache has been used to pre-load the FX rates and other reference data for Trade and Cash data processing job to improve the performance.
  
-**Application Services Layer**:
+### Application Services Layer:
 
 The business logic is decomposed into specific microservices built with Spring Boot.
 
@@ -33,13 +33,13 @@ The business logic is decomposed into specific microservices built with Spring B
 
   - **Reporting Microservices:** (Implied by context) These services process the ingested data to generate the compliance and business reports required by the Bank to submit it.
 
-**User Interaction Layer (Frontend):**
+### User Interaction Layer (Frontend):
 
   - **ReactJs SPA:** The user interface is a Single Page Application (SPA) built with React, providing a responsive and interactive dashboard for bank users to monitor reporting status and manage files.
 
   - **API Gateway/Route:** The frontend communicates with the internal microservices via OpenShift Routes and an integrated API gateway that handles authentication and request routing.
 
-**Continuous Integration & Delivery (CI/CD):**
+### Continuous Integration & Delivery (CI/CD):
 
 The design is supported by a robust automation pipeline:
 
