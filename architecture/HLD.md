@@ -56,5 +56,31 @@ As an investment banking solution, DB_Hercules adheres to strict security standa
 
 ---
 
-## 6. Future Roadmap
-The architecture is designed to evolve into an **Agentic AI** system. The structured data processed by Spring Batch will serve as the foundation for **Spring AI** and **LangChain4j** integrations, allowing for intelligent automated reporting and data analysis.
+## 6. Future Roadmap & Strategic Enhancements
+
+The following objectives outline the transition from the current modernization phase to a fully optimized, enterprise-grade reporting ecosystem.
+
+### 6.1 Transition to Native System Integration
+Currently, secondary datasets—including **Bond ISINs, Levelling, Product Codes, Opening Balances, and UBR Hierarchies**—are ingested via a legacy CSV/Excel import strategy. 
+* **Enhancement:** Shift from manual file dependencies to direct system-to-system integration.
+* **Objective:** Implement data sourcing and ingestion using **bank-standard communication protocols**. This will eliminate file-handling risks and ensure real-time data synchronization.
+
+### 6.2 Modernization of the Adjustment & Reporting Layer
+The final stage of report generation and manual data adjustment is currently handled through Excel-based macros. These are prone to errors and face performance bottlenecks with large datasets.
+* **Enhancement:** Develop a centralized, **UI-based adjustment module** within the ReactJs dashboard.
+* **Objective:** Replace manual macros with a robust interface that supports high-volume data validation and automated report generation.
+
+### 6.3 Optimization of Trade Data Ingestion Throughput
+The current ingestion window for Trade data is approximately **2 hours**, utilizing 400 connection pools and a 1000 record chunk size.
+* **Enhancement:** Conduct performance tuning of the Spring Batch orchestration.
+* **Objective:** Significantly reduce the ingestion window by implementing **multi-threaded step partitioning** and tuning database concurrency to balance chunk size against connection overhead.
+
+### 6.4 Strategic Overview: Current vs. Target State
+
+| Feature | Current State | Target State (Roadmap) |
+| :--- | :--- | :--- |
+| **Data Sourcing** | Manual CSV/Excel Imports | Direct Protocol Integration |
+| **Adjustments** | Excel Macros | React-based UI Module |
+| **Throughput** | 2-Hour Ingestion Window | Optimized Parallel Processing |
+| **Architecture** | File-centric Ingestion | System-centric Integration |
+| **Intelligence** | Procedural Processing | Agentic AI (Spring AI/LangChain4j) |
