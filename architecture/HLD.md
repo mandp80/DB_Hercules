@@ -6,6 +6,8 @@
 ## 2. Architectural Overview
 The architecture is designed for reliable batch processing of financial data, leveraging the container orchestration of OpenShift and the modularity of Spring Boot.
 
+![Alt text](images/Hercules-HLD.drawio.png)
+
 ### 2.1 Core Components
 * **Frontend**: A modern **ReactJs** Single Page Application (SPA) for monitoring and management.
 * **API Gateway**: Handles request routing, secure authentication, and load balancing.
