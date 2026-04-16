@@ -206,51 +206,51 @@ sequenceDiagram
 
 **Phase 1: Preparation & Staging**
 
-**Step 1:** truncateImpCresImpCresFacAndTrade Tasklet to ensure a clean state by truncating imp_Cres, imp_Cres_Fac, and the Trade processing tables.
+- **Step 1:** truncateImpCresImpCresFacAndTrade Tasklet to ensure a clean state by truncating imp_Cres, imp_Cres_Fac, and the Trade processing tables.
 
-**Step 2:** masterInputToCres Migrates data from SRC_TRN_DET (Oracle) to imp_Cres. Uses partitioned readers for parallel extraction.
+- **Step 2:** masterInputToCres Migrates data from SRC_TRN_DET (Oracle) to imp_Cres. Uses partitioned readers for parallel extraction.
 
-**Step 3:** masterInputToCresFac Migrates data from SRC_FAC_DET to imp_Cres_Fac.
+- **Step 3:** masterInputToCresFac Migrates data from SRC_FAC_DET to imp_Cres_Fac.
 
-**Step 4:** validateTrade Validates data integrity and performs initial updates between landing and staging layers.
+- **Step 4:** validateTrade Validates data integrity and performs initial updates between landing and staging layers.
 
 **Phase 2: Optimization Flow (masterCresToTradeStepWithIndex)**
 
-**Step 5:** Performance Flow A complex internal flow consisting of:
-
-- **Index Management:** Drops indexes before heavy writes and recreates them afterward to optimize I/O.
-
-- **In-Memory Lookups:** Loads small reference tables into memory to eliminate database round-trips for metadata lookups.
-
-- **Data Promotion:** Migrates data from ads.dbo.Imp_Cres to ads.dbo.Trade.
-
-- **IFRS Updates:** Updates TradeIFRS and TradeIFRSManual tables.
+- **Step 5:** Performance Flow A complex internal flow consisting of:
+    
+  - **Index Management:** Drops indexes before heavy writes and recreates them afterward to optimize I/O.
+    
+  - **In-Memory Lookups:** Loads small reference tables into memory to eliminate database round-trips for metadata lookups.
+    
+  - **Data Promotion:** Migrates data from ads.dbo.Imp_Cres to ads.dbo.Trade.
+    
+  - **IFRS Updates:** Updates TradeIFRS and TradeIFRSManual tables.
 
 **Phase 3: Financial Engines & Quality Gates**
 
-**Step 6:** checkCobDtInTradeRFT Safety Tasklet that checks for existing Reporting Date (cobDate) records in the RFT layer to prevent duplicate processing.
-
-**Step 7:** masterTradeToTradeRFTStep Standard promotion from the Processing (ADS) layer to the Reporting (RFT) layer.
-
-**Step 8:** masterTradeToRftTradeIfrs Migration of report-ready data into the Trade_ifrs specialized table.
-
-**Step 9:** rftNettingEngineStep Executes core netting logic and transformations on the Trade_ifrs table.
-
-**Step 10:** rftGVGEngineStep Two-part logic engine to update GVG Subtypes, Levelling, and Type fields across Trade_ifrs and GVG_Levelling tables.
+  - **Step 6:** checkCobDtInTradeRFT Safety Tasklet that checks for existing Reporting Date (cobDate) records in the RFT layer to prevent duplicate processing.
+    
+  - **Step 7:** masterTradeToTradeRFTStep Standard promotion from the Processing (ADS) layer to the Reporting (RFT) layer.
+    
+  - **Step 8:** masterTradeToRftTradeIfrs Migration of report-ready data into the Trade_ifrs specialized table.
+    
+  - **Step 9:** rftNettingEngineStep Executes core netting logic and transformations on the Trade_ifrs table.
+    
+  - **Step 10:** rftGVGEngineStep Two-part logic engine to update GVG Subtypes, Levelling, and Type fields across Trade_ifrs and GVG_Levelling tables.
 
 **Phase 4: Final Aggregation Layer**
 
-**Step 11:** createViewsFlowLinks Sets the vwFlowLink context using the RFT.dbo.Cash table for field-level linking.
-
-**Step 12:** rftEngineStep The final consolidation engine:
-
-- **Staging:** Populates Quarterly/Monthly tables (TradeQ1_MS, TradeQ2_MSP, etc.).
-
-- **ItemProcessor Logic:** Joins quarterly data and migrates to RFT_Table_Summ.
-
-- **Field Mapping:** Updates IsNetted, Close_Balance, and Product_Code.
-
-- **Final Output:** Persists data into either RFT_Y_Summ (Yearly) or RFT_Q_Summ (Quarterly).
+  - **Step 11:** createViewsFlowLinks Sets the vwFlowLink context using the RFT.dbo.Cash table for field-level linking.
+    
+  - **Step 12:** rftEngineStep The final consolidation engine:
+    
+    - **Staging:** Populates Quarterly/Monthly tables (TradeQ1_MS, TradeQ2_MSP, etc.).
+    
+    - **ItemProcessor Logic:** Joins quarterly data and migrates to RFT_Table_Summ.
+    
+    - **Field Mapping:** Updates IsNetted, Close_Balance, and Product_Code.
+    
+    - **Final Output:** Persists data into either RFT_Y_Summ (Yearly) or RFT_Q_Summ (Quarterly).
 
 ## 5. Resilience & Monitoring
 
