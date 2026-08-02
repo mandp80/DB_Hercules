@@ -9,7 +9,7 @@
 - [The Modern Solution (Hercules Architecture)](#-the-modern-solution-hercules-architecture)
 - [Architecture](#%EF%B8%8F-architecture)
 - [Technology Stack](#-technology-stack)
-- [Phase Wise Evolution (Strangler Fig Pattern)](#phase-wise-evolution-strangler-fig-pattern)
+- [Phase Wise Evolution](#phase-wise-evolution)
 - [Project Structure](#project-structure)
   
 ---
@@ -142,7 +142,7 @@ To eliminate technical debt and accelerate deployment cycles, **Hercules** intro
 
 ---
 
-### Phase-wise Evolution (Strangler Fig Pattern)
+### Phase-wise Evolution
 
 - **Phase 1:** Build new Spring Boot backend READ APIs for React front end and future integrations.
 - **Phase 2:** Build new React UI (reporting / dashboards) and run both systems in parallel.
